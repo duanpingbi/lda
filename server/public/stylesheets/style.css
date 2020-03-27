@@ -1,0 +1,24 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+#app {
+  width: 400px;
+  height: 200px;
+  margin: 0 auto;
+  background-color: #999999;
+}
+#app h1{
+  text-align: center;
+}
+
+.btn {
+  width: 60px;
+  height: 30px;
+  border: 1px solid #cccccc;
+  border-radius: 2px;
+}
