@@ -11,6 +11,7 @@ module.exports = {
         filename: devMode ? 'js/[name].js' : 'js/[name].[hash].js',
         path: path.resolve(outputPath,'static')
     },
+    mode: 'production',
     optimization: {
         splitChunks: {
             minSize: 0,

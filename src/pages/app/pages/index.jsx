@@ -38,7 +38,7 @@ class App extends React.Component {
                         </Menu.Item>
                         <Menu.Item key="participle">
                             <VideoCameraOutlined />
-                            <span className="nav-text">分词</span>
+                            <span className="nav-text">中文分词</span>
                         </Menu.Item>
                         <Menu.Item key="lda">
                             <UploadOutlined />

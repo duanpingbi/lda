@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/bin/www",
-    "build": "webpack --mode=production --config ./config/webpack.config.js",
-    "dev": "webpack-dev-server --mode=development --config ./config/webpack.config.js "
+    "start": "nodemon server/bin/www",
+    "build": "webpack --config ./config/webpack.config.js",
+    "dev": "webpack --watch --config ./config/webpack.config.js "
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,10 @@
   "homepage": "https://github.com/duanpingbi/lda#readme",
   "dependencies": {
     "antd": "^4.0.4",
+    "axios": "^0.19.2",
+    "lin-mizar": "^0.3.2",
     "lodash": "^4.17.15",
+    "mongoose": "^5.9.9",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2"
@@ -51,6 +54,7 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "nodemon": "^2.0.2",
     "postcss": "^7.0.17",
     "postcss-loader": "^3.0.0",
     "style-loader": "^0.23.1",
