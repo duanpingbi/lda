@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import Data from './pages/index';
+import routers from './routers';
 import 'antd/dist/antd.css';
-ReactDom.render(<Data />, document.getElementById('app'));
+ReactDom.render(routers, document.getElementById('app'));

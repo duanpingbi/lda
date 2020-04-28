@@ -10,6 +10,9 @@ router.get('/app', async (ctx, next) => {
 router.get('/data', async (ctx, next) => {
   await ctx.render('data')
 })
+router.get('/detail', async (ctx, next) => {
+  await ctx.render('data')
+})
 router.get('/lda', async (ctx, next) => {
   await ctx.render('lda')
 })

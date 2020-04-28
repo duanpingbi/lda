@@ -12,7 +12,6 @@ class App extends React.Component {
         }
     }
     menuClick = (item) => {
-        console.log('item', item);
         let contentUrl = `http://localhost:3000/${item.key}`;
         this.setState({contentUrl});
     }
@@ -31,7 +30,7 @@ class App extends React.Component {
                     }}
                 >
                     <div className="logo" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['data']} onClick={this.menuClick}>
+                    <Menu theme="dark" mode="inline" onClick={this.menuClick}>
                         <Menu.Item key="data">
                             <UserOutlined />
                             <span className="nav-text">数据获取</span>

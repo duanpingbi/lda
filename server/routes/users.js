@@ -1,16 +1,24 @@
 const router = require('koa-router')()
+const Mongodb = require('../db/db');
+const userModel = require('../db/schema/user');
+router.prefix('/login')
 
-router.prefix('/users')
-
-router.get('/', function (ctx, next) {
-  ctx.json({code:200,data:{
-    titile:'test',
-    content:'test'
-  }});
-})
-
-router.get('/bar', function (ctx, next) {
-  ctx.body = 'this is a users/bar response'
+router.post('/query', async (ctx, next) => {
+  const param = ctx.request.body;
+  let res = await Mongodb.queryById(userModel, param);
+  console.log('res',res);
+  if(res) {
+    ctx.json({
+      code: 200,
+      success: true
+    });
+  } else {
+    ctx.json({
+      code: 200,
+      success: false
+    });
+  }
+  
 })
 
 module.exports = router

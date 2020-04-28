@@ -1,56 +1,77 @@
 import React from 'react';
 import './style';
 import api from '../api';
-import { Table } from 'antd';
+import { Table, notification, Spin } from 'antd';
 
-const columns = [
-    {
-        title: 'title',
-        dataIndex: 'title',
-        key: 'title',
-    },
-    {
-        title: 'content',
-        dataIndex: 'content',
-        key: 'content',
-    },
-    {
-        title: 'url',
-        dataIndex: 'url',
-        key: 'url',
-    },
-    {
-        title: 'Action',
-        key: 'action',
-        render: () => (
-          <span>
-            <a style={{ marginRight: 16 }}>查看</a>
-            <a>删除</a>
-          </span>
-        ),
-      }
-];
 class Data extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+            loading: true
         }
     }
-    componentDidMount=()=> {
+    handelDel = (id) => {
+        api.delArticleById(id)
+            .then(() => {
+                notification.success({
+                    message: '删除成功！'
+                });
+                this.getDataList();
+            }).catch(err => {
+                notification.error({
+                    message: '删除失败',
+                    description: err
+                });
+            })
+    }
+    get columns() {
+        return [
+            {
+                title: '新闻标题',
+                dataIndex: 'title',
+                key: 'title',
+            },
+            {
+                title: '新闻地址',
+                dataIndex: 'nUrl',
+                key: 'nUrl',
+            },
+            {
+                title: '操作',
+                key: 'action',
+                render: (data) => (
+                    <span>
+                        <a
+                            style={{ marginRight: 16 }}
+                            href={`/detail?id=${data._id}`}
+                        >查看</a>
+                        <a onClick={() => this.handelDel(data._id)}>删除</a>
+                    </span>
+                ),
+            }
+        ];
+    }
+    componentDidMount = () => {
+        this.getDataList();
+    }
+    getDataList = () => {
         api.getArticle().then(res => {
             const { data } = res;
-            this.setState({data:data.data});
+            this.setState({ data: data.data, loading: false });
         }).catch(err => {
-            console.log(err);
+            notification.error({
+                message: '获取数据失败',
+                description: err
+            });
         })
     }
     render() {
-        const { data } = this.state;
+        const { data,loading } = this.state;
         return (
-            <div>
-                <Table columns={columns} dataSource={data} />
-            </div>
+            <Spin spinning={loading}>
+                <Table columns={this.columns} dataSource={data} />
+            </Spin>
         );
     }
 }

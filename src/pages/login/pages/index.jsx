@@ -1,12 +1,28 @@
 import React from 'react';
 import './style';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import api from '../api';
 
 class NormalLoginForm extends React.Component {
     onFinish = values => {
-        console.log('Received values of form: ', values);
-        window.location.href = '/app'
+        delete values.remember;
+        api.queryUserInfo(values).then(res => {
+            if (res.data.success) {
+                window.location.href = '/app';
+            } else {
+                notification.error({
+                    message: '登陆失败',
+                    description: '用户名或密码错误'
+                });
+            }
+        }).catch(err => {
+            notification.error({
+                message: '登陆失败',
+                description: err
+            })
+        })
+
     };
 
     render() {
@@ -20,7 +36,7 @@ class NormalLoginForm extends React.Component {
                     }}
                     onFinish={this.onFinish}>
                     <Form.Item
-                        name="用户名"
+                        name="name"
                         rules={[
                             {
                                 required: true,
@@ -31,7 +47,7 @@ class NormalLoginForm extends React.Component {
                         <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="用户名" />
                     </Form.Item>
                     <Form.Item
-                        name="密码"
+                        name="pwd"
                         rules={[
                             {
                                 required: true,
@@ -53,12 +69,10 @@ class NormalLoginForm extends React.Component {
                             忘记密码
                         </a>
                     </Form.Item>
-
                     <Form.Item>
                         <Button type="primary" htmlType="submit" className="login-form-button" block>
                             登陆
                         </Button>
-                        或者<a href="">立即注册</a>
                     </Form.Item>
                 </Form >
             </div>

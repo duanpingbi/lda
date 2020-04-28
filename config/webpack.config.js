@@ -1,7 +1,7 @@
 const path = require('path');//node.js中的原生模块
 const HtmlWebpackPlugin = require('html-webpack-plugin');//按照模板生成html并且引入相关文件资源
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');//将css抽离出来，并且引入在html文件中
-const outputPath = path.resolve(__dirname,'../server');
+const outputPath = path.resolve(__dirname,'../server/public');
 const devMode = process.env.NODE_ENV !== 'production';
 const util = require('./util');
 

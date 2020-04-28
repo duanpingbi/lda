@@ -1,19 +1,9 @@
-const mongoose = require('./index');
-const Schema = mongoose.Schema;
-const userSchema = new Schema({
-    name: String,
-    pwd: Number
-});
-
-const MyModel = mongoose.model('user', userSchema, 'user');
-
-
 class Mongodb {
     constructor() {
 
     }
-    // 查询
-    query(param = {}) {
+    // 查询全部
+    query(MyModel,param = {}) {
         return new Promise((resolve, reject) => {
             MyModel.find(param, (err, res) => {
                 if (err) {
@@ -23,8 +13,19 @@ class Mongodb {
             })
         })
     }
+    // 根据id查询
+    queryById(MyModel,param) {
+        return new Promise((resolve, reject) => {
+            MyModel.findOne(param, (err, res) => {
+                if (err) {
+                    reject(err)
+                }
+                resolve(res)
+            })
+        })
+    }
     // 保存
-    save(obj) {
+    save(MyModel,obj) {
         const m = new MyModel(obj)
         return new Promise((resolve, reject) => {
             m.save((err, res) => {
@@ -32,10 +33,18 @@ class Mongodb {
                     reject(err)
                 }
                 resolve(res)
-                console.log(res)
             })
         })
-
+    }
+    remove(MyModel,param) {
+        return new Promise((resolve,reject) => {
+            MyModel.remove(param,(err,res)=>{
+                if (err) {
+                    reject(err)
+                }
+                resolve(res)
+            })
+        })
     }
 }
 module.exports = new Mongodb()
