@@ -29,7 +29,7 @@ class App extends React.Component {
                         console.log(collapsed, type);
                     }}
                 >
-                    <div className="logo" />
+                    <div className="system">舆情监控系统</div>
                     <Menu theme="dark" mode="inline" onClick={this.menuClick}>
                         <Menu.Item key="data">
                             <UserOutlined />
@@ -59,7 +59,7 @@ class App extends React.Component {
                             </iframe>
                         </div>
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>lda在线系统 ©2020 Created by duanpingbi</Footer>
+                    <Footer style={{ textAlign: 'center' }}>舆情监控在线系统 ©2020 Created by duanpingbi</Footer>
                 </Layout>
             </Layout>
         );

@@ -1,6 +1,6 @@
 import React from 'react';
 import api from '../../api';
-import { Notify } from 'antd';
+import { notification, Breadcrumb } from 'antd';
 import Pie from '../components/pie';
 import './style';
 let words = '';
@@ -38,13 +38,24 @@ class ArticleDetail extends React.Component {
             })
             this.setState({ nUrl, title });
         }).catch(err => {
-            Notify.error(err);
+            notification.error({
+                message: '获取数据失败',
+                description: err
+            });
         })
     }
     render() {
         const { nUrl, title } = this.state;
         return (
             <div className="detail-container">
+                <Breadcrumb>
+                    <Breadcrumb.Item>
+                        <a href="/data">列表</a>
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                        详情
+                    </Breadcrumb.Item>
+                </Breadcrumb>
                 <h2>{title}</h2>
                 <a href={nUrl}>{nUrl}</a>
                 <pre className="detail-content">

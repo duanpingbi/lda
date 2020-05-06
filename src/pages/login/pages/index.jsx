@@ -36,7 +36,7 @@ class NormalLoginForm extends React.Component {
                     }}
                     onFinish={this.onFinish}>
                     <Form.Item
-                        name="name"
+                        name="username"
                         rules={[
                             {
                                 required: true,
@@ -73,12 +73,12 @@ class NormalLoginForm extends React.Component {
                         <Button type="primary" htmlType="submit" className="login-form-button" block>
                             登陆
                         </Button>
+                        或者 <a href="/register">立即注册</a>
                     </Form.Item>
                 </Form >
             </div>
         );
     }
-
 }
 
 export default NormalLoginForm;

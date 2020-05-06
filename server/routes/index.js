@@ -3,6 +3,9 @@ const router = require('koa-router')()
 router.get('/', async (ctx, next) => {
   await ctx.render('login')
 })
+router.get('/register', async (ctx, next) => {
+  await ctx.render('login')
+})
 
 router.get('/app', async (ctx, next) => {
   await ctx.render('app')
