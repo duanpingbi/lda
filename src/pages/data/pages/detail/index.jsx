@@ -48,7 +48,7 @@ class ArticleDetail extends React.Component {
         const { nUrl, title } = this.state;
         return (
             <div className="detail-container">
-                <Breadcrumb>
+                <Breadcrumb className="detail-list">
                     <Breadcrumb.Item>
                         <a href="/data">列表</a>
                     </Breadcrumb.Item>

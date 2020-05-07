@@ -70,7 +70,7 @@ class Data extends React.Component {
         const { data,loading } = this.state;
         return (
             <Spin spinning={loading}>
-                <Table columns={this.columns} dataSource={data} />
+                <Table columns={this.columns} dataSource={data} pagination={{ position: ['bottom', 'bottomLeft'] }} />
             </Spin>
         );
     }

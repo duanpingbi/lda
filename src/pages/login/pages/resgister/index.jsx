@@ -66,6 +66,7 @@ const RegistrationForm = () => {
             } else {
                 notification.error({
                     message: '注册失败',
+                    description: '该用户已注册'
                 });
             }
         }).catch(err => {

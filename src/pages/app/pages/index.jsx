@@ -5,7 +5,7 @@ import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/i
 const { Header, Content, Footer, Sider } = Layout;
 
 class App extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             contentUrl: 'data'
@@ -13,7 +13,7 @@ class App extends React.Component {
     }
     menuClick = (item) => {
         let contentUrl = `http://localhost:3000/${item.key}`;
-        this.setState({contentUrl});
+        this.setState({ contentUrl });
     }
     render() {
         const { contentUrl } = this.state;
@@ -28,9 +28,15 @@ class App extends React.Component {
                     onCollapse={(collapsed, type) => {
                         console.log(collapsed, type);
                     }}
+
                 >
                     <div className="system">舆情监控系统</div>
-                    <Menu theme="dark" mode="inline" onClick={this.menuClick}>
+                    <Menu
+                        theme="dark"
+                        mode="inline"
+                        onClick={this.menuClick}
+                        defaultSelectedKeys={['data']}
+                        defaultOpenKeys={['data']}>
                         <Menu.Item key="data">
                             <UserOutlined />
                             <span className="nav-text">数据获取</span>
@@ -59,7 +65,6 @@ class App extends React.Component {
                             </iframe>
                         </div>
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>舆情监控在线系统 ©2020 Created by duanpingbi</Footer>
                 </Layout>
             </Layout>
         );
